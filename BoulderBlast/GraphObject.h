@@ -3,6 +3,7 @@
 
 #include <set>
 #include <cmath>
+#include <iostream>
  
 const int ANIMATION_POSITIONS_PER_TICK = 3;
 

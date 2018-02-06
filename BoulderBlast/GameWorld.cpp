@@ -6,6 +6,9 @@ using namespace std;
 
 bool GameWorld::getKey(int& value)
 {
+	if(m_controller == NULL){
+		cout << "Controller NULL" << endl;
+	}
 	bool gotKey = m_controller->getLastKey(value);
 
 	if (gotKey && (value == 'q' || value == '\x03'))  // CTRL-C
