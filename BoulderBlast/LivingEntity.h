@@ -12,7 +12,6 @@ public:
 
 	bool isDead();
 	void die();
-	void tryToMove(Direction dir);
 
 private:
 	int m_total_health;

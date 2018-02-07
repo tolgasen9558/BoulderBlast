@@ -35,3 +35,45 @@ void Player::handleUserInput(){
 		tryToMove(finalDirection);
 	}
 }
+
+bool Player::tryToMove(Direction dir){
+	int destinationX = getX();
+	int destinationY = getY();
+	switch (dir)
+	{
+	case GraphObject::up:
+		destinationY++;
+		break;
+	case GraphObject::down:
+		destinationY--;
+		break;
+	case GraphObject::left:
+		destinationX--;
+		break;
+	case GraphObject::right:
+		destinationX++;
+		break;
+	}
+	setDirection(dir);
+
+	Actor* actorAtDestination = getWorld()->getActorAt(destinationX, destinationY);
+	bool canMove = false;
+
+	if(actorAtDestination != nullptr){
+		switch (actorAtDestination->getType())
+		{
+		case IID_WALL:
+			canMove = false;
+			break;
+		case IID_BOULDER:
+			bool boulderMoved = actorAtDestination->tryToMove(dir);
+			canMove = boulderMoved;
+			break;
+		}
+	}
+	if(canMove || actorAtDestination == nullptr){
+		moveTo(destinationX, destinationY);
+		return true;
+	}
+	return false;
+}

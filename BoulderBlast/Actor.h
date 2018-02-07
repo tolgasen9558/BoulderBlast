@@ -16,6 +16,7 @@ public:
 	virtual void doSomething() = 0;
 	virtual int getType() = 0;
 	StudentWorld* getWorld();
+	bool tryToMove(Direction dir);
 private:
 	StudentWorld *m_world;
 };

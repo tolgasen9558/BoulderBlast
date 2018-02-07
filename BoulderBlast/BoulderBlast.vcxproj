@@ -80,6 +80,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="Boulder.cpp" />
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="LivingEntity.cpp" />
@@ -90,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
+    <ClInclude Include="Boulder.h" />
     <ClInclude Include="GameConstants.h" />
     <ClInclude Include="GameController.h" />
     <ClInclude Include="GameWorld.h" />

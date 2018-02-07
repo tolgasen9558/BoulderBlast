@@ -7,6 +7,7 @@
 #include "Actor.h"
 #include "Wall.h"
 #include "Player.h"
+#include "Boulder.h"
 #include <vector>
 #include <string>
 

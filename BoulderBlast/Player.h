@@ -12,6 +12,7 @@ public:
     
 	void doSomething();
 	void handleUserInput();
+	bool tryToMove(Direction dir);
 
 	virtual int getType(){return IID_PLAYER;}
 };

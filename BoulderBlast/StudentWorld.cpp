@@ -38,8 +38,7 @@ int StudentWorld::loadLevel(int levelNum){
 			{
 			case Level::player:
 			{
-				Player *player = new Player(col, row, 100, this, GraphObject::right);
-				m_actorList.push_back(player);
+				m_actorList.push_back(new Player(col, row, 100, this, GraphObject::right));
 				break;
 			}
 			case Level::hole:
@@ -47,11 +46,12 @@ int StudentWorld::loadLevel(int levelNum){
 				break;
 			case Level::wall:
 			{
-				Wall *newWall = new Wall(col, row, this);
-				newWall->setVisible(true);
-				m_actorList.push_back(newWall);
+				m_actorList.push_back(new Wall(col, row, this));
 				break;
 			}
+			case Level::boulder:
+				m_actorList.push_back(new Boulder(col, row, this));
+				
 			default:
 				break;
 			}
