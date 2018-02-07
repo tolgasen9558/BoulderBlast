@@ -37,23 +37,9 @@ void Player::handleUserInput(){
 }
 
 bool Player::tryToMove(Direction dir){
-	int destinationX = getX();
-	int destinationY = getY();
-	switch (dir)
-	{
-	case GraphObject::up:
-		destinationY++;
-		break;
-	case GraphObject::down:
-		destinationY--;
-		break;
-	case GraphObject::left:
-		destinationX--;
-		break;
-	case GraphObject::right:
-		destinationX++;
-		break;
-	}
+	int destinationX, destinationY;
+	getDestinationCoordinates(dir, destinationX, destinationY);
+
 	setDirection(dir);
 
 	Actor* actorAtDestination = getWorld()->getActorAt(destinationX, destinationY);
@@ -63,10 +49,11 @@ bool Player::tryToMove(Direction dir){
 		switch (actorAtDestination->getType())
 		{
 		case IID_WALL:
+		case IID_HOLE:
 			canMove = false;
 			break;
 		case IID_BOULDER:
-			bool boulderMoved = actorAtDestination->tryToMove(dir);
+			bool boulderMoved = ((Boulder*) actorAtDestination)->tryToMove(dir);
 			canMove = boulderMoved;
 			break;
 		}

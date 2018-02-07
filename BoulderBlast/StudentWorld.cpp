@@ -16,6 +16,16 @@ int StudentWorld::move(){
 		actor->doSomething();
 	}
 
+	for (auto it = m_actorList.begin(); it != m_actorList.end(); ) {
+        if ((*it)->isActive() == false) {
+            delete *it;
+            it = m_actorList.erase(it);
+        }
+        else{
+            it++;
+		}
+    }
+
 
 	//decLives();
 	return GWSTATUS_CONTINUE_GAME;
@@ -37,21 +47,16 @@ int StudentWorld::loadLevel(int levelNum){
 			switch (level.getContentsOf(col,row))
 			{
 			case Level::player:
-			{
 				m_actorList.push_back(new Player(col, row, 100, this, GraphObject::right));
 				break;
-			}
 			case Level::hole:
-				//cout << "Hole is at (" << row << ", " << col << ")" << endl;
+				m_actorList.push_back(new Hole(col, row, this));
 				break;
 			case Level::wall:
-			{
 				m_actorList.push_back(new Wall(col, row, this));
 				break;
-			}
 			case Level::boulder:
 				m_actorList.push_back(new Boulder(col, row, this));
-				
 			default:
 				break;
 			}

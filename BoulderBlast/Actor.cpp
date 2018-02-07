@@ -6,25 +6,39 @@ StudentWorld* Actor::getWorld(){
 	return m_world;
 }
 
-bool Actor::tryToMove(Direction dir){
-	int destinationX = getX();
-	int destinationY = getY();
+bool Actor::isActive(){
+	return m_isActive;
+}
+
+void Actor::setActive(bool isActive){
+	m_isActive = isActive;
+}
+
+void Actor::getDestinationCoordinates(Direction dir, int& xOut, int& yOut){
+	xOut = getX();
+	yOut = getY();
 	switch (dir)
 	{
 	case GraphObject::up:
-		destinationY++;
+		yOut++;
 		break;
 	case GraphObject::down:
-		destinationY--;
+		yOut--;
 		break;
 	case GraphObject::left:
-		destinationX--;
+		xOut--;
 		break;
 	case GraphObject::right:
-		destinationX++;
+		xOut++;
 		break;
 	}
+}
 
+
+bool Actor::tryToMove(Direction dir){
+	int destinationX, destinationY;
+	getDestinationCoordinates(dir, destinationX, destinationY);
+	
 	Actor* actorAtDestination = getWorld()->getActorAt(destinationX, destinationY);
 	if(actorAtDestination != nullptr){
 		switch (actorAtDestination->getType())

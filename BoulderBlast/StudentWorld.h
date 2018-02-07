@@ -8,6 +8,8 @@
 #include "Wall.h"
 #include "Player.h"
 #include "Boulder.h"
+#include "Hole.h"
+
 #include <vector>
 #include <string>
 

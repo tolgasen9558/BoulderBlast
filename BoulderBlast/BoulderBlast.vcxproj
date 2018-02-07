@@ -83,6 +83,7 @@
     <ClCompile Include="Boulder.cpp" />
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="GameWorld.cpp" />
+    <ClCompile Include="Hole.cpp" />
     <ClCompile Include="LivingEntity.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -97,6 +98,7 @@
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="glut.h" />
     <ClInclude Include="GraphObject.h" />
+    <ClInclude Include="Hole.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LivingEntity.h" />
     <ClInclude Include="Player.h" />
