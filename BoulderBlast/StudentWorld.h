@@ -9,6 +9,12 @@
 #include "Player.h"
 #include "Boulder.h"
 #include "Hole.h"
+#include "Jewel.h"
+#include "Ammo.h"
+#include "ExtraLife.h"
+#include "RestoreHealth.h"
+#include "SnarlBot.h"
+#include "Bullet.h"
 
 #include <vector>
 #include <string>
@@ -28,13 +34,14 @@ public:
 
 	virtual int move();
 
-	virtual void cleanUp(){
-	}
+	virtual void cleanUp(){}
 
+	void addActor(Actor* actor);
 	Actor* getActorAt(int posX, int posY);
-
+	int getCurrentLevelNum();
 private:
 	std::vector<Actor*> m_actorList;
+	int m_currentLevelNum;
 	int loadLevel(int levelNum);
 };
 

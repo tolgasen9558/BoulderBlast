@@ -14,6 +14,26 @@ void Actor::setActive(bool isActive){
 	m_isActive = isActive;
 }
 
+void Actor::inverseDirection(){
+	Direction finalDirection;
+	switch (getDirection())
+	{
+	case up:
+		finalDirection = down;
+		break;
+	case down:
+		finalDirection = up;
+		break;
+	case left:
+		finalDirection = right;
+		break;
+	case right:
+		finalDirection = left;
+		break;
+	}
+	setDirection(finalDirection);
+}
+
 void Actor::getDestinationCoordinates(Direction dir, int& xOut, int& yOut){
 	xOut = getX();
 	yOut = getY();
@@ -45,6 +65,12 @@ bool Actor::tryToMove(Direction dir){
 		{
 		case IID_WALL:
 		case IID_BOULDER:
+		case IID_AMMO:
+		case IID_HOLE:
+		case IID_EXTRA_LIFE:
+		case IID_JEWEL:
+		case IID_RESTORE_HEALTH:
+		case IID_SNARLBOT:
 			return false;
 		}
 	}

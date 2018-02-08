@@ -21,6 +21,7 @@ public:
 	bool tryToMove(Direction dir);
 	bool isActive();
 	void setActive(bool isActive);
+	void inverseDirection();
 
 private:
 	StudentWorld *m_world;

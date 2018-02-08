@@ -50,12 +50,47 @@ bool Player::tryToMove(Direction dir){
 		{
 		case IID_WALL:
 		case IID_HOLE:
+		case IID_SNARLBOT:
 			canMove = false;
 			break;
 		case IID_BOULDER:
+		{
 			bool boulderMoved = ((Boulder*) actorAtDestination)->tryToMove(dir);
 			canMove = boulderMoved;
-			break;
+		}
+		break;
+		case IID_JEWEL:
+		{
+			canMove = true;
+			actorAtDestination->setActive(false);
+			//TODO:Increase Score
+			std::cout << "Jewel gained, increase score" << std::endl;
+		}
+		break;
+		case IID_EXTRA_LIFE:
+		{
+			canMove = true;
+			actorAtDestination->setActive(false);
+			//TODO:Add one life Score
+			std::cout << "Extra Life gained,  add one life" << std::endl;
+		}
+		break;
+		case IID_AMMO:
+		{
+			canMove = true;
+			actorAtDestination->setActive(false);
+			//TODO:Add ammo
+			std::cout << "Ammo gained,  add ammo" << std::endl;
+		}
+		break;
+		case IID_RESTORE_HEALTH:
+		{
+			canMove = true;
+			actorAtDestination->setActive(false);
+			//TODO:Restore Health
+			std::cout << "Restore Health" << std::endl;
+		}
+		break;
 		}
 	}
 	if(canMove || actorAtDestination == nullptr){

@@ -81,27 +81,33 @@
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Boulder.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="GameWorld.cpp" />
-    <ClCompile Include="Hole.cpp" />
     <ClCompile Include="LivingEntity.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="SnarlBot.cpp" />
     <ClCompile Include="StudentWorld.cpp" />
-    <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="Boulder.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="ExtraLife.h" />
     <ClInclude Include="GameConstants.h" />
     <ClInclude Include="GameController.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="glut.h" />
     <ClInclude Include="GraphObject.h" />
+    <ClInclude Include="Ammo.h" />
     <ClInclude Include="Hole.h" />
+    <ClInclude Include="Jewel.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LivingEntity.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="RestoreHealth.h" />
+    <ClInclude Include="SnarlBot.h" />
     <ClInclude Include="SoundFX.h" />
     <ClInclude Include="SpriteManager.h" />
     <ClInclude Include="StudentWorld.h" />

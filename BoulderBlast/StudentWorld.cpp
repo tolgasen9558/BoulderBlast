@@ -12,8 +12,9 @@ int StudentWorld::move(){
 
 	//TODO: Update display text
 	
-	for(Actor *actor : m_actorList){
-		actor->doSomething();
+	int numActors  = m_actorList.size();
+	for(int i = 0; i < numActors; i++){
+		m_actorList[i]->doSomething();
 	}
 
 	for (auto it = m_actorList.begin(); it != m_actorList.end(); ) {
@@ -32,6 +33,8 @@ int StudentWorld::move(){
 }
 
 int StudentWorld::loadLevel(int levelNum){
+	m_currentLevelNum = levelNum;
+	//TODO: fix level num
 	string levelFileName = "level00.dat";
 	Level level(assetDirectory());
 	Level::LoadResult result = level.loadLevel(levelFileName);
@@ -57,7 +60,24 @@ int StudentWorld::loadLevel(int levelNum){
 				break;
 			case Level::boulder:
 				m_actorList.push_back(new Boulder(col, row, this));
-			default:
+				break;
+			case Level::jewel:
+				m_actorList.push_back(new Jewel(col, row, this));
+				break;
+			case Level::ammo:
+				m_actorList.push_back(new Ammo(col, row, this));
+				break;
+			case Level::extra_life:
+				m_actorList.push_back(new ExtraLife(col, row, this));
+				break;
+			case Level::restore_health:
+				m_actorList.push_back(new RestoreHealth(col, row, this));
+				break;
+			case Level::vert_snarlbot:
+				m_actorList.push_back(new SnarlBot(col, row, 50, false , this, GraphObject::down));
+				break;
+			case Level::horiz_snarlbot:
+				m_actorList.push_back(new SnarlBot(col, row, 50, true , this, GraphObject::right));
 				break;
 			}
 		}
@@ -74,5 +94,12 @@ Actor* StudentWorld::getActorAt(int posX, int posY){
 	return nullptr;
 }
 
+int StudentWorld::getCurrentLevelNum(){
+	return m_currentLevelNum;
+}
+
+void StudentWorld::addActor(Actor *actor){
+	m_actorList.push_back(actor);
+}
 
 // Students:  Add code to this file (if you wish), StudentWorld.h, Actor.h and Actor.cpp
