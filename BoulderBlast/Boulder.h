@@ -3,15 +3,16 @@
 
 #include "actor.h"
 #include "StudentWorld.h"
-class Boulder : public Actor{
+class Boulder : public LivingEntity{
 public:
-	Boulder(int startX, int startY, StudentWorld* world)
-    :Actor(IID_BOULDER, startX, startY, world){ setVisible(true);}
+	Boulder(int startX, int startY, int totalHealth, StudentWorld* world)
+    :LivingEntity(IID_BOULDER, startX, startY, totalHealth, world){ setVisible(true);}
     
 	void doSomething(){};
 	virtual int getType(){ return IID_BOULDER;}
 
 	bool tryToMove(Direction dir);
+	
 };
 
 #endif //BOULDER_H_

@@ -14,6 +14,7 @@ public:
 	void die();
 	bool isPlayerInSight(Direction dir);	//Use the function for Bots
 	void fire();
+	void takeHit(int damage);
 private:
 	int m_total_health;
 	int m_current_health;

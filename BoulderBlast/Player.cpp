@@ -10,29 +10,27 @@ void Player::doSomething(){
 void Player::handleUserInput(){
 	int pressed_key;
 	if(getWorld()->getKey(pressed_key)){
-		Direction finalDirection;
 		switch (pressed_key)
 		{
 		case KEY_PRESS_RIGHT:
-			finalDirection = right;
+			tryToMove(right);
 			break;
 		case KEY_PRESS_LEFT:
-			finalDirection = left;
+			tryToMove(left);
 			break;
 		case KEY_PRESS_UP:
-			finalDirection = up;
+			tryToMove(up);
 			break;
 		case KEY_PRESS_DOWN:
-			finalDirection = down;
+			tryToMove(down);
 			break;
 		case KEY_PRESS_ESCAPE:
 			//TODO: Restart 
 			break;
 		case KEY_PRESS_SPACE:
-			//TODO: Fire!!!
+			fire();
 			break;
 		}
-		tryToMove(finalDirection);
 	}
 }
 

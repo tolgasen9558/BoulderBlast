@@ -10,4 +10,5 @@ public:
     
 	virtual int getType(){ return IID_BULLET;}
 	void doSomething();
+	void handleCollision();
 };

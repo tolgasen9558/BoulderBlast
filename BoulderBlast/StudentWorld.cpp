@@ -59,7 +59,7 @@ int StudentWorld::loadLevel(int levelNum){
 				m_actorList.push_back(new Wall(col, row, this));
 				break;
 			case Level::boulder:
-				m_actorList.push_back(new Boulder(col, row, this));
+				m_actorList.push_back(new Boulder(col, row, 10, this));
 				break;
 			case Level::jewel:
 				m_actorList.push_back(new Jewel(col, row, this));
@@ -74,10 +74,10 @@ int StudentWorld::loadLevel(int levelNum){
 				m_actorList.push_back(new RestoreHealth(col, row, this));
 				break;
 			case Level::vert_snarlbot:
-				m_actorList.push_back(new SnarlBot(col, row, 50, false , this, GraphObject::down));
+				m_actorList.push_back(new SnarlBot(col, row, 10, false , this, GraphObject::down));
 				break;
 			case Level::horiz_snarlbot:
-				m_actorList.push_back(new SnarlBot(col, row, 50, true , this, GraphObject::right));
+				m_actorList.push_back(new SnarlBot(col, row, 10, true , this, GraphObject::right));
 				break;
 			}
 		}
