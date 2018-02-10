@@ -14,6 +14,7 @@ public:
 	virtual void patrol();
 	void tryToCollectGoodie();
 	void die();
+	void changeDirectionRandomly();
 private:
 	int m_distanceBeforeTurning;
 	Goodie *m_collectedGoodie;

@@ -15,19 +15,56 @@ void KleptoBot::patrol(){
 	getDestinationCoordinates(getDirection(), destinationX, destinationY);
 	Actor *foundActor = getWorld()->getActorAt(destinationX, destinationY);
 
-	//If have an obstacle in front, turn back
-	if(foundActor != nullptr && (foundActor->getType() == IID_WALL
+	//If its time to turn or faced with an obstacle
+	if(m_distanceBeforeTurning <= 0 || foundActor != nullptr && (foundActor->getType() == IID_WALL
 		|| foundActor->getType() == IID_BOULDER
 		|| foundActor->getType() == IID_HOLE
 		|| foundActor->getType() == IID_KLEPTOBOT
 		|| foundActor->getType() == IID_SNARLBOT
 		|| foundActor->getType() == IID_ANGRY_KLEPTOBOT
 		|| foundActor->getType() == IID_ROBOT_FACTORY)){
-			inverseDirection();
+
+			m_distanceBeforeTurning = (rand() % 6) + 1;
+			changeDirectionRandomly();
 	}
 	else{
 		moveTo(destinationX, destinationY);
+		m_distanceBeforeTurning--;
 	}
+}
+
+void KleptoBot::changeDirectionRandomly(){
+	std::vector<Direction> directionsToTry;
+	directionsToTry.push_back(up);
+	directionsToTry.push_back(down);
+	directionsToTry.push_back(left);
+	directionsToTry.push_back(right);
+
+	int destinationX, destinationY;
+	Direction firstTrial = directionsToTry[rand() % directionsToTry.size()];
+	
+	while(!directionsToTry.empty()){
+		int random = rand() % directionsToTry.size();
+
+		getDestinationCoordinates(directionsToTry[random], destinationX, destinationY);
+		Actor *foundActor = getWorld()->getActorAt(destinationX, destinationY);
+
+		if(foundActor != nullptr && (foundActor->getType() == IID_WALL
+		|| foundActor->getType() == IID_BOULDER
+		|| foundActor->getType() == IID_HOLE
+		|| foundActor->getType() == IID_KLEPTOBOT
+		|| foundActor->getType() == IID_SNARLBOT
+		|| foundActor->getType() == IID_ANGRY_KLEPTOBOT
+		|| foundActor->getType() == IID_ROBOT_FACTORY)){
+			directionsToTry.erase(directionsToTry.begin() + random);
+		}
+		else{
+			setDirection(directionsToTry[random]);
+			moveTo(destinationX, destinationY);
+			return;
+		}
+	}
+	setDirection(firstTrial);
 }
 
 void KleptoBot::tryToCollectGoodie(){
