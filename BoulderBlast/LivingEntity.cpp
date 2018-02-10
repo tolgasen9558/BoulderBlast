@@ -69,9 +69,9 @@ bool LivingEntity::isPlayerInSight(Direction dir){
 	return false;
 }
 
-void LivingEntity::takeHit(int damage){
+ void LivingEntity::takeHit(int damage){
 	m_current_health -= damage;
 	if(m_current_health <= 0){
-		die();
+  		die();
 	}
 }

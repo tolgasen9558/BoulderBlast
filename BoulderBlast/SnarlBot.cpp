@@ -3,20 +3,9 @@
 
 void SnarlBot::doSomething(){
 	//Do not do anything if shot dead already
-	if(isDead()){return;}
-
-	int currentLevelNum = getWorld()->getCurrentLevelNum();
-	int movementPeriod = (28 - currentLevelNum) / 4;
-	if(movementPeriod < 3){movementPeriod = 3;}
-
-	//Rest
-	if(m_tickCounter < movementPeriod){
-		m_tickCounter++;
-		return;
-	}
+	if(isDead() || !isAllowedToAct()){return;}
 
 	//Act
-	m_tickCounter = 0;
 	if(isPlayerInSight(getDirection())){
 		fire();
 	}

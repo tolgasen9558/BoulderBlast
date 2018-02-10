@@ -18,6 +18,8 @@ void Bullet::handleCollision(){
 	case IID_PLAYER:
 	case IID_BOULDER:
 	case IID_SNARLBOT:
+	case IID_KLEPTOBOT:
+	case IID_ANGRY_KLEPTOBOT:
 		((LivingEntity*) target)->takeHit(2);
 		setActive(false);
 		break;

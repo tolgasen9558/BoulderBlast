@@ -1,17 +1,16 @@
 #pragma once
-#include "livingentity.h"
 #include "Bullet.h"
-class SnarlBot : public LivingEntity{
+#include "Bot.h"
+
+class SnarlBot : public Bot{
 
 public:
-	SnarlBot(int startX, int startY, int totalHealth, bool isHorizontal,
-		StudentWorld* world, Direction dir)
-    :LivingEntity(IID_SNARLBOT, startX, startY, totalHealth, world, dir), m_tickCounter(0){ setVisible(true);}
+	SnarlBot(int startX, int startY, int totalHealth, StudentWorld* world, Direction dir)
+    :Bot(IID_SNARLBOT, startX, startY, totalHealth, world, dir){}
 
-	void doSomething();
+	virtual void doSomething();
+	virtual void patrol();
 	virtual int getType(){return IID_SNARLBOT;}
-	void patrol();
 private:
-	int m_tickCounter;
 };
 

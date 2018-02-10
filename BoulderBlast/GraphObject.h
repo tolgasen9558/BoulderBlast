@@ -55,6 +55,12 @@ class GraphObject
 		return roundAwayFromZero(m_destY);
 	}
 
+	void setPosition(int posX, int posY){
+		//Change object's position immediately
+		m_x = m_destX = posX;
+		m_y = m_destY = posY;
+	}
+
 	void moveTo(int x, int y)
 	{
 		m_destX = x;

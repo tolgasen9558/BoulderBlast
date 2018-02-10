@@ -11,7 +11,7 @@ public:
 	//~LivingEntity();
 
 	bool isDead();
-	void die();
+	virtual void die();
 	bool isPlayerInSight(Direction dir);	//Use the function for Bots
 	void fire();
 	void takeHit(int damage);

@@ -1,4 +1,5 @@
 #include "StudentWorld.h"
+
 #include <string>
 using namespace std;
 
@@ -74,14 +75,15 @@ int StudentWorld::loadLevel(int levelNum){
 				m_actorList.push_back(new RestoreHealth(col, row, this));
 				break;
 			case Level::vert_snarlbot:
-				m_actorList.push_back(new SnarlBot(col, row, 10, false , this, GraphObject::down));
+				m_actorList.push_back(new SnarlBot(col, row, 10, this, GraphObject::down));
 				break;
 			case Level::horiz_snarlbot:
-				m_actorList.push_back(new SnarlBot(col, row, 10, true , this, GraphObject::right));
+				m_actorList.push_back(new SnarlBot(col, row, 10, this, GraphObject::right));
 				break;
 			}
 		}
 	}
+	m_actorList.push_back(new KleptoBot(1, 1, 5, this, GraphObject::right));
 	return 0;
 }
 

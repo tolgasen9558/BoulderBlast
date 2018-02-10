@@ -9,12 +9,10 @@
 #include "Player.h"
 #include "Boulder.h"
 #include "Hole.h"
-#include "Jewel.h"
-#include "Ammo.h"
-#include "ExtraLife.h"
-#include "RestoreHealth.h"
+#include "Goodie.h"
 #include "SnarlBot.h"
 #include "Bullet.h"
+#include "KleptoBot.h"
 
 #include <vector>
 #include <string>
