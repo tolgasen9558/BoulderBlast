@@ -71,7 +71,14 @@ bool Player::tryToMove(Direction dir){
 				}
 			}
 			break;
+		case IID_EXIT:
+			if(actorAtDestination->isVisible()){
+				std::cout << "Level Finished" << std::endl;
+			}
+			canMove = true;
+			break;
 		}
+
 	}
 	if(canMove || actorAtDestination == nullptr){
 		moveTo(destinationX, destinationY);

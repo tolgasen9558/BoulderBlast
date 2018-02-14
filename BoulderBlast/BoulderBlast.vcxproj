@@ -83,10 +83,12 @@
     <ClCompile Include="Bot.cpp" />
     <ClCompile Include="Boulder.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Exit.cpp" />
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="Goodie.cpp" />
     <ClCompile Include="KleptoBot.cpp" />
+    <ClCompile Include="KleptoBotFactory.cpp" />
     <ClCompile Include="LivingEntity.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -98,6 +100,7 @@
     <ClInclude Include="Bot.h" />
     <ClInclude Include="Boulder.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Exit.h" />
     <ClInclude Include="GameConstants.h" />
     <ClInclude Include="GameController.h" />
     <ClInclude Include="GameWorld.h" />
@@ -106,6 +109,7 @@
     <ClInclude Include="GraphObject.h" />
     <ClInclude Include="Hole.h" />
     <ClInclude Include="KleptoBot.h" />
+    <ClInclude Include="KleptoBotFactory.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LivingEntity.h" />
     <ClInclude Include="Player.h" />

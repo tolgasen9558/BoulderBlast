@@ -13,6 +13,8 @@
 #include "SnarlBot.h"
 #include "Bullet.h"
 #include "KleptoBot.h"
+#include "KleptoBotFactory.h"
+#include "Exit.h"
 
 #include <vector>
 #include <string>
@@ -23,7 +25,7 @@ class StudentWorld : public GameWorld
 {
 public:
 
-	StudentWorld(std::string assetDir) : GameWorld(assetDir){}
+	StudentWorld(std::string assetDir) : GameWorld(assetDir){m_totalJewels = m_collectedJewels = 0;}
 
 	virtual int init(){
 		loadLevel(0);
@@ -36,11 +38,17 @@ public:
 
 	void addActor(Actor* actor);
 	Actor* getActorAt(int posX, int posY);
+	bool isThereKleptoBotAt(int posX, int posY);
 	int getCurrentLevelNum();
+	void increaseCollectedJewels();
+	void increaseTotalJewels();
 private:
 	std::vector<Actor*> m_actorList;
 	int m_currentLevelNum;
 	int loadLevel(int levelNum);
+	int m_totalJewels;
+	int m_collectedJewels;
+	Exit* m_exit;
 };
 
 #endif // STUDENTWORLD_H_

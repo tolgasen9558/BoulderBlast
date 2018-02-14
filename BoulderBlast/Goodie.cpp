@@ -1,4 +1,5 @@
 #include "Goodie.h"
+#include "StudentWorld.h"
 
 bool Goodie::isCollectable(){
 	return m_isCollectable;
@@ -15,7 +16,7 @@ void Ammo::applyEffect(){
 
 void Jewel::applyEffect(){
 	//TODO:Implement the effect
-	std::cout << "Jewel taken, apply effect" << std::endl;
+	getWorld()->increaseCollectedJewels();
 }
 
 void RestoreHealth::applyEffect(){

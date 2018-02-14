@@ -45,7 +45,6 @@ int StudentWorld::loadLevel(int levelNum){
 		return -1;
 	}
 	
-
 	for(int row = 0; row < VIEW_HEIGHT; row++){
 		for(int col = 0; col < VIEW_WIDTH; col++){
 			switch (level.getContentsOf(col,row))
@@ -64,6 +63,7 @@ int StudentWorld::loadLevel(int levelNum){
 				break;
 			case Level::jewel:
 				m_actorList.push_back(new Jewel(col, row, this));
+				increaseTotalJewels();
 				break;
 			case Level::ammo:
 				m_actorList.push_back(new Ammo(col, row, this));
@@ -80,20 +80,74 @@ int StudentWorld::loadLevel(int levelNum){
 			case Level::horiz_snarlbot:
 				m_actorList.push_back(new SnarlBot(col, row, 10, this, GraphObject::right));
 				break;
+			case Level::kleptobot_factory:
+				m_actorList.push_back(new KleptoBotFactory(col, row, false, this));
+				break;
+			case Level::angry_kleptobot_factory:
+				m_actorList.push_back(new KleptoBotFactory(col, row, true, this));
+				break;
+			case Level::exit:
+				Exit *exit = new Exit(col, row, this);
+				m_actorList.push_back(exit);
+				m_exit = exit;
+				break;
 			}
 		}
 	}
-	m_actorList.push_back(new KleptoBot(1, 1, 5, this, GraphObject::right));
 	return 0;
 }
 
 Actor* StudentWorld::getActorAt(int posX, int posY){
+	Actor *actor1 = nullptr;
+	Actor *actor2 = nullptr;
 	for(Actor* actor : m_actorList){
 		if(actor->getX() == posX && actor->getY() == posY){
-			return actor;
+			if(actor1 == nullptr){
+				actor1 = actor;
+			}
+			else {
+				actor2 = actor;
+				break;
+			}
 		}
 	}
-	return nullptr;
+	if(actor1 == nullptr){
+		return nullptr;
+	}
+	if(actor2 == nullptr){
+		return actor1;
+	}
+	switch (actor1->getType()) {
+		case IID_AMMO:
+        case IID_RESTORE_HEALTH:
+        case IID_EXTRA_LIFE:
+        case IID_BULLET: 
+        case IID_HOLE:
+        case IID_EXIT:
+			return actor2;
+        case IID_ROBOT_FACTORY:
+		{
+			if (actor2->getType() == IID_BULLET){
+                return actor1;
+			}
+			else{
+				return actor2;
+			}
+        }
+	}
+	return actor1;
+}
+
+bool StudentWorld::isThereKleptoBotAt(int posX, int posY){
+	for(Actor* actor : m_actorList){
+		if(actor->getX() == posX && actor->getY() == posY){
+			int typeID = actor->getType();
+			if(typeID == IID_KLEPTOBOT || typeID == IID_ANGRY_KLEPTOBOT){
+				return true;
+			}
+		}
+	}
+	return false;
 }
 
 int StudentWorld::getCurrentLevelNum(){
@@ -102,6 +156,17 @@ int StudentWorld::getCurrentLevelNum(){
 
 void StudentWorld::addActor(Actor *actor){
 	m_actorList.push_back(actor);
+}
+
+void StudentWorld::increaseCollectedJewels(){
+	m_collectedJewels++;
+	if(m_collectedJewels >= m_totalJewels){
+		m_exit->setVisible(true);
+	}
+}
+
+void StudentWorld::increaseTotalJewels(){
+	m_totalJewels++;
 }
 
 // Students:  Add code to this file (if you wish), StudentWorld.h, Actor.h and Actor.cpp

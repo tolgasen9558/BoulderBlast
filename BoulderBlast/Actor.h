@@ -3,6 +3,7 @@
 
 #include "GraphObject.h"
 #include "GameConstants.h"
+#include <vector>
 
 class StudentWorld;
 // Students:  Add code to this file, Actor.cpp, StudentWorld.h, and StudentWorld.cpp
