@@ -42,8 +42,11 @@ public:
 	int getCurrentLevelNum();
 	void increaseCollectedJewels();
 	void increaseTotalJewels();
+	Player *getPlayer();
+	void setPlayer(Player* player);
 private:
 	std::vector<Actor*> m_actorList;
+	Player *m_player;
 	int m_currentLevelNum;
 	int loadLevel(int levelNum);
 	int m_totalJewels;

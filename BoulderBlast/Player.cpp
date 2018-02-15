@@ -28,7 +28,10 @@ void Player::handleUserInput(){
 			//TODO: Restart 
 			break;
 		case KEY_PRESS_SPACE:
-			fire();
+			if(getAmmo() > 0){
+				fire();
+				decreaseAmmo(1);
+			}
 			break;
 		}
 	}
@@ -85,4 +88,16 @@ bool Player::tryToMove(Direction dir){
 		return true;
 	}
 	return false;
+}
+
+void Player::increaseAmmo(int amount){
+	m_ammo += amount;
+}
+
+void Player::decreaseAmmo(int amount){
+	m_ammo -= amount;
+}
+
+int Player::getAmmo(){
+	return m_ammo;
 }

@@ -50,8 +50,12 @@ int StudentWorld::loadLevel(int levelNum){
 			switch (level.getContentsOf(col,row))
 			{
 			case Level::player:
-				m_actorList.push_back(new Player(col, row, 100, this, GraphObject::right));
+			{
+				Player *player = new Player(col, row, 100, this, GraphObject::right);
+				setPlayer(player);
+				m_actorList.push_back(player);
 				break;
+			}
 			case Level::hole:
 				m_actorList.push_back(new Hole(col, row, this));
 				break;
@@ -167,6 +171,14 @@ void StudentWorld::increaseCollectedJewels(){
 
 void StudentWorld::increaseTotalJewels(){
 	m_totalJewels++;
+}
+
+Player* StudentWorld::getPlayer(){
+	return m_player;
+}
+
+void StudentWorld::setPlayer(Player* player){
+	m_player = player;
 }
 
 // Students:  Add code to this file (if you wish), StudentWorld.h, Actor.h and Actor.cpp

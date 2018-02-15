@@ -11,7 +11,7 @@ void Goodie::setCollectable(bool isCollectable){
 
 void Ammo::applyEffect(){
 	//TODO:Implement the effect
-	std::cout << "Ammo taken, apply effect" << std::endl;
+	getWorld()->getPlayer()->increaseAmmo(10);
 }
 
 void Jewel::applyEffect(){
