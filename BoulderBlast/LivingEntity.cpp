@@ -5,17 +5,33 @@ bool LivingEntity::isDead(){
 	return m_isdead;
 }
 
-void LivingEntity:: die(){
+void LivingEntity::die(){
 	m_current_health = 0;
 	m_isdead = true;
 	setActive(false);
 }
 
-void LivingEntity::fire(){
+void LivingEntity::fire(Actor *actor){
 	int destinationX, destinationY;
 	getDestinationCoordinates(getDirection(), destinationX, destinationY);
 	Bullet *bullet = new Bullet(destinationX, destinationY, getDirection(), getWorld());
 	getWorld()->addActor(bullet);
+	int soundID;
+	switch (actor->getType())
+	{
+	case IID_PLAYER:
+		soundID = SOUND_PLAYER_FIRE;
+		break;
+	case IID_SNARLBOT:
+	case IID_KLEPTOBOT:
+	case IID_ANGRY_KLEPTOBOT:
+		soundID = SOUND_ENEMY_FIRE;
+		break;
+	default:
+		return;
+	}
+	getWorld()->playSound(soundID);
+
 }
 
 bool LivingEntity::isPlayerInSight(Direction dir){

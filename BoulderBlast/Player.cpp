@@ -31,7 +31,7 @@ void Player::handleUserInput(){
 			break;
 		case KEY_PRESS_SPACE:
 			if(getAmmo() > 0){
-				fire();
+				fire(this);
 				decreaseAmmo(1);
 			}
 			break;
@@ -73,12 +73,14 @@ bool Player::tryToMove(Direction dir){
 					goodie->applyEffect();
 					goodie->setCollectable(false);
 					goodie->setActive(false);
+					getWorld()->playSound(SOUND_GOT_GOODIE);
 				}
 			}
 			break;
 		case IID_EXIT:
 			if(actorAtDestination->isVisible()){
 				getWorld()->setLevelFinished(true);
+				getWorld()->playSound(SOUND_FINISHED_LEVEL);
 			}
 			canMove = true;
 			break;
@@ -102,4 +104,14 @@ void Player::decreaseAmmo(int amount){
 
 int Player::getAmmo(){
 	return m_ammo;
+}
+
+void Player::takeHit(int damage){
+	getWorld()->playSound(SOUND_PLAYER_IMPACT);
+	LivingEntity::takeHit(damage);
+}
+
+void Player::die(){
+	getWorld()->playSound(SOUND_PLAYER_DIE);
+	LivingEntity::die();
 }

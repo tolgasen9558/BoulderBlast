@@ -7,7 +7,7 @@ void SnarlBot::doSomething(){
 
 	//Act
 	if(isPlayerInSight(getDirection())){
-		fire();
+		fire(this);
 	}
 	else{
 		patrol();
@@ -35,5 +35,5 @@ void SnarlBot::patrol(){
 
 void SnarlBot::die(){
 	getWorld()->increaseScore(BONUS_POINTS_SNARLBOT);
-	LivingEntity::die();
+	Bot::die();
 }

@@ -10,6 +10,8 @@ public:
 
 	virtual void doSomething() = 0;
 	virtual void patrol() = 0;
+	void takeHit(int damage);
+	void die();
 	bool isAllowedToAct();
 
 private:

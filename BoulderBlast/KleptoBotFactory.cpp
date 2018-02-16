@@ -14,6 +14,7 @@ void KleptoBotFactory::produceKleptoBot(){
 		int health = m_isProducingAngryBots ? 8 : 5;
 		KleptoBot *kleptoBot = new KleptoBot(getX(), getY(), health, m_isProducingAngryBots, getWorld(), right);
 		getWorld()->addActor(kleptoBot);
+		getWorld()->playSound(SOUND_ROBOT_BORN);
 	}
 }
 

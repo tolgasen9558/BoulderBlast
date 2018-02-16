@@ -57,6 +57,7 @@ const int GWSTATUS_PLAYER_WON		= 2;
 const int GWSTATUS_FINISHED_LEVEL	= 3;
 const int GWSTATUS_LEVEL_ERROR		= 4;
 
+// bonus points for the entities
 const int BONUS_POINTS_SNARLBOT			= 100;
 const int BONUS_POINTS_KLEPTOBOT		= 10;
 const int BONUS_POINTS_ANGRY_KLEPTOBOT	= 20;

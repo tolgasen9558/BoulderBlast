@@ -13,8 +13,8 @@ public:
 	bool isDead();
 	virtual void die();
 	bool isPlayerInSight(Direction dir);	//Use the function for Bots
-	void fire();
-	void takeHit(int damage);
+	void fire(Actor*);
+	virtual void takeHit(int damage);
 	int getHealthPercent();
 	void restoreToFullHealth();
 

@@ -15,3 +15,13 @@ bool Bot::isAllowedToAct(){
 	m_tickCounter = 0;
 	return true;
 }
+
+void Bot::takeHit(int damage){
+	getWorld()->playSound(SOUND_ROBOT_IMPACT);
+	LivingEntity::takeHit(damage);
+}
+
+void Bot::die(){
+	getWorld()->playSound(SOUND_ROBOT_DIE);
+	LivingEntity::die();
+}

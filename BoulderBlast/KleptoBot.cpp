@@ -4,8 +4,9 @@
 void KleptoBot::doSomething(){
 	//Do not do anything if shot dead already
 	if(isDead() || !isAllowedToAct()){return;}
+
 	if(m_isAngry && isPlayerInSight(getDirection())){
-		fire();
+		fire(this);
 		return;
 	}
 	patrol();
@@ -87,6 +88,7 @@ void KleptoBot::tryToCollectGoodie(){
 		m_collectedGoodie = goodie;
 		goodie->setCollectable(false);
 		goodie->setVisible(false);
+		getWorld()->playSound(SOUND_ROBOT_MUNCH);
 	}
 }
 
@@ -94,12 +96,13 @@ void KleptoBot::die(){
 	if(m_isAngry){ getWorld()->increaseScore(BONUS_POINTS_ANGRY_KLEPTOBOT); }
 	else { getWorld()->increaseScore(BONUS_POINTS_KLEPTOBOT); }
 
-	LivingEntity::die();
 	if(m_collectedGoodie != nullptr){
 		m_collectedGoodie->setPosition(getX(), getY());
 		m_collectedGoodie->setCollectable(true);
 		m_collectedGoodie->setVisible(true);
 	}
+	
+	Bot::die();
 }
 
 

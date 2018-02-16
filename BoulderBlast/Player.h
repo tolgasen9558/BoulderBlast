@@ -18,6 +18,8 @@ public:
 	void increaseAmmo(int amount);
 	void decreaseAmmo(int amount);
 	int getAmmo();
+	void takeHit(int damage);
+	void die();
 
 private:
 	int m_ammo;

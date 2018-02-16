@@ -190,6 +190,7 @@ void StudentWorld::increaseCollectedJewels(){
 	m_collectedJewels++;
 	if(m_collectedJewels >= m_totalJewels){
 		m_exit->setVisible(true);
+		playSound(SOUND_REVEAL_EXIT);
 	}
 }
 
