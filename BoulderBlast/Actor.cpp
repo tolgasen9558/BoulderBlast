@@ -78,3 +78,15 @@ bool Actor::tryToMove(Direction dir){
 	moveTo(destinationX, destinationY);
 	return true;
 }
+
+bool Actor::isGoodie(){
+	switch (getType())
+	{
+		case IID_AMMO:
+		case IID_EXTRA_LIFE:
+		case IID_JEWEL:
+		case IID_RESTORE_HEALTH:
+			return true;
+	}
+	return false;
+}

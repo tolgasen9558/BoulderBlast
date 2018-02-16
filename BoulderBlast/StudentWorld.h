@@ -51,6 +51,7 @@ public:
 	std::string formatStatsText(long score, int level, int lives, int health, int ammo, int bonus);
 	bool isLevelFinished();
 	void setLevelFinished(bool isFinished);
+	int countKleptoBots(int centerX, int centerY, int length);
 
 private:
 	std::vector<Actor*> m_actorList;
@@ -59,6 +60,7 @@ private:
 	int m_collectedJewels;
 	int m_currentBonus;
 	bool m_levelFinished;
+	
 
 	Exit* m_exit;
 };

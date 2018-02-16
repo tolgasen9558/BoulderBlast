@@ -25,9 +25,7 @@ void Player::handleUserInput(){
 			tryToMove(down);
 			break;
 		case KEY_PRESS_ESCAPE:
-			getWorld()->setLevelFinished(true);
-			//TODO: Release this
-			//die();
+			die();
 			break;
 		case KEY_PRESS_SPACE:
 			if(getAmmo() > 0){

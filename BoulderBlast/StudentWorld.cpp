@@ -79,7 +79,7 @@ int StudentWorld::loadLevel(){
 			{
 			case Level::player:
 			{
-				Player *player = new Player(col, row, 5, this, GraphObject::right);
+				Player *player = new Player(col, row, 20, this, GraphObject::right);
 				setPlayer(player);
 				m_actorList.push_back(player);
 				break;
@@ -236,5 +236,17 @@ bool StudentWorld::isLevelFinished(){
 	return m_levelFinished;
 }
 
+int StudentWorld::countKleptoBots(int centerX, int centerY, int length){
+	int counter = 0;
+	for(int i = 0; i < m_actorList.size(); i++){
+		if(m_actorList[i]->getType() == IID_KLEPTOBOT || m_actorList[i]->getType() == IID_ANGRY_KLEPTOBOT){
+			if(m_actorList[i]->getX() > centerX - length && m_actorList[i]->getX() < centerX + length
+				&& m_actorList[i]->getY() > centerY - length && m_actorList[i]->getY() < centerY + length){
+				counter++;
+			}
+		}
+	}
+	return counter;
+}
 
 // Students:  Add code to this file (if you wish), StudentWorld.h, Actor.h and Actor.cpp

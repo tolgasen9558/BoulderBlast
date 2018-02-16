@@ -10,7 +10,6 @@ public:
 	int getType(){ return IID_ROBOT_FACTORY; }
 	void doSomething();
 	void produceKleptoBot();
-	bool checkBotsNearbyLessThan(int count);
 
 private:
 	bool m_isProducingAngryBots;

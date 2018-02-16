@@ -21,6 +21,7 @@ void SnarlBot::patrol(){
 
 	//If have an obstacle in front, turn back
 	if(foundActor != nullptr && (foundActor->getType() == IID_WALL 
+		|| foundActor->getType() == IID_HOLE
 		|| foundActor->getType() == IID_KLEPTOBOT
 		|| foundActor->getType() == IID_SNARLBOT
 		|| foundActor->getType() == IID_BOULDER

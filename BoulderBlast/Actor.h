@@ -23,6 +23,7 @@ public:
 	bool isActive();
 	void setActive(bool isActive);
 	void inverseDirection();
+	bool isGoodie();
 
 private:
 	StudentWorld *m_world;
