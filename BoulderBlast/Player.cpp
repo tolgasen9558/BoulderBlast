@@ -26,6 +26,7 @@ void Player::handleUserInput(){
 			break;
 		case KEY_PRESS_ESCAPE:
 			getWorld()->setLevelFinished(true);
+			//TODO: Release this
 			//die();
 			break;
 		case KEY_PRESS_SPACE:

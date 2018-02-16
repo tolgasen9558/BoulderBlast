@@ -38,7 +38,7 @@ int StudentWorld::move(){
 
 	//Level Finished Succesfully
 	if(m_levelFinished){
-		increaseScore(m_currentBonus);
+		increaseScore(m_currentBonus + 2000);
 		m_levelFinished = false;
 		return GWSTATUS_FINISHED_LEVEL;
 	}

@@ -16,6 +16,8 @@ public:
 	void fire();
 	void takeHit(int damage);
 	int getHealthPercent();
+	void restoreToFullHealth();
+
 private:
 	int m_total_health;
 	int m_current_health;

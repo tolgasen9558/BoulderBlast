@@ -8,7 +8,7 @@ public:
 	//~Player(void);
 
 	Player(int startX, int startY, int totalHealth, StudentWorld* world, Direction dir)
-    :LivingEntity(IID_PLAYER, startX, startY, totalHealth, world, dir){ setVisible(true); m_ammo = 5;}
+    :LivingEntity(IID_PLAYER, startX, startY, totalHealth, world, dir){ setVisible(true); m_ammo = 20;}
     
 	void doSomething();
 	void handleUserInput();

@@ -91,6 +91,9 @@ void KleptoBot::tryToCollectGoodie(){
 }
 
 void KleptoBot::die(){
+	if(m_isAngry){ getWorld()->increaseScore(BONUS_POINTS_ANGRY_KLEPTOBOT); }
+	else { getWorld()->increaseScore(BONUS_POINTS_KLEPTOBOT); }
+
 	LivingEntity::die();
 	if(m_collectedGoodie != nullptr){
 		m_collectedGoodie->setPosition(getX(), getY());

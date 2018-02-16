@@ -11,6 +11,7 @@ public:
 	virtual void doSomething();
 	virtual void patrol();
 	virtual int getType(){return IID_SNARLBOT;}
+	void die();
 private:
 };
 

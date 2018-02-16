@@ -32,3 +32,8 @@ void SnarlBot::patrol(){
 		moveTo(destinationX, destinationY);
 	}
 }
+
+void SnarlBot::die(){
+	getWorld()->increaseScore(BONUS_POINTS_SNARLBOT);
+	LivingEntity::die();
+}
