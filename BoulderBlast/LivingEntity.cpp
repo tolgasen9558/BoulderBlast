@@ -75,3 +75,8 @@ bool LivingEntity::isPlayerInSight(Direction dir){
   		die();
 	}
 }
+
+ int LivingEntity::getHealthPercent(){
+	 float percent = (float) m_current_health / m_total_health;
+	 return (int) (percent * 100);
+ }

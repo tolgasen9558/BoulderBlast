@@ -25,7 +25,8 @@ void Player::handleUserInput(){
 			tryToMove(down);
 			break;
 		case KEY_PRESS_ESCAPE:
-			//TODO: Restart 
+			getWorld()->setLevelFinished(true);
+			//die();
 			break;
 		case KEY_PRESS_SPACE:
 			if(getAmmo() > 0){
@@ -76,7 +77,7 @@ bool Player::tryToMove(Direction dir){
 			break;
 		case IID_EXIT:
 			if(actorAtDestination->isVisible()){
-				std::cout << "Level Finished" << std::endl;
+				getWorld()->setLevelFinished(true);
 			}
 			canMove = true;
 			break;

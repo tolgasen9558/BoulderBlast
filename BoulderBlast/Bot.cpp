@@ -3,7 +3,7 @@
 
 
 bool Bot::isAllowedToAct(){
-	int currentLevelNum = getWorld()->getCurrentLevelNum();
+	int currentLevelNum = getWorld()->getLevel();
 	int movementPeriod = (28 - currentLevelNum) / 4;
 	if(movementPeriod < 3){movementPeriod = 3;}
 

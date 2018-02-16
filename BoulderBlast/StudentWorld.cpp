@@ -1,5 +1,4 @@
 #include "StudentWorld.h"
-
 #include <string>
 using namespace std;
 
@@ -11,13 +10,22 @@ GameWorld* createStudentWorld(string assetDir)
 int StudentWorld::move(){
 	// This code is here merely to allow the game to build, run, and terminate after hitting enter a few times 
 
-	//TODO: Update display text
+	setDisplayText();
 	
+	//Each Actors Do Something Method
 	int numActors  = m_actorList.size();
 	for(int i = 0; i < numActors; i++){
 		m_actorList[i]->doSomething();
 	}
 
+	if(m_player->isDead()){
+		decLives();
+		if(getLives() > 0){
+			return GWSTATUS_PLAYER_DIED;
+		}
+	}
+
+	//Remove dead Actors
 	for (auto it = m_actorList.begin(); it != m_actorList.end(); ) {
         if ((*it)->isActive() == false) {
             delete *it;
@@ -28,15 +36,35 @@ int StudentWorld::move(){
 		}
     }
 
+	//Level Finished Succesfully
+	if(m_levelFinished){
+		increaseScore(m_currentBonus);
+		m_levelFinished = false;
+		return GWSTATUS_FINISHED_LEVEL;
+	}
+
+	if(m_currentBonus > 0){
+		m_currentBonus--;
+	}
 
 	//decLives();
 	return GWSTATUS_CONTINUE_GAME;
 }
 
-int StudentWorld::loadLevel(int levelNum){
-	m_currentLevelNum = levelNum;
-	//TODO: fix level num
-	string levelFileName = "level00.dat";
+void StudentWorld::cleanUp(){
+	for (auto it = m_actorList.begin(); it != m_actorList.end(); ) {
+		delete *it;
+		it = m_actorList.erase(it);
+    }
+}
+
+int StudentWorld::loadLevel(){
+	int levelNum = getLevel();
+	std::ostringstream strStream;
+	strStream.fill('0');
+	strStream << "level" << setw(2) << getLevel() << ".dat";
+
+	string levelFileName = strStream.str();
 	Level level(assetDirectory());
 	Level::LoadResult result = level.loadLevel(levelFileName);
 
@@ -51,7 +79,7 @@ int StudentWorld::loadLevel(int levelNum){
 			{
 			case Level::player:
 			{
-				Player *player = new Player(col, row, 100, this, GraphObject::right);
+				Player *player = new Player(col, row, 5, this, GraphObject::right);
 				setPlayer(player);
 				m_actorList.push_back(player);
 				break;
@@ -154,10 +182,6 @@ bool StudentWorld::isThereKleptoBotAt(int posX, int posY){
 	return false;
 }
 
-int StudentWorld::getCurrentLevelNum(){
-	return m_currentLevelNum;
-}
-
 void StudentWorld::addActor(Actor *actor){
 	m_actorList.push_back(actor);
 }
@@ -180,5 +204,36 @@ Player* StudentWorld::getPlayer(){
 void StudentWorld::setPlayer(Player* player){
 	m_player = player;
 }
+
+void StudentWorld::setDisplayText(){
+	setGameStatText(formatStatsText(getScore(), getLevel(), getLives()
+		, getPlayer()->getHealthPercent(), getPlayer()->getAmmo(), m_currentBonus));
+}
+
+std::string StudentWorld::formatStatsText(long score, int level, int lives, int health, int ammo, int bonus){
+	std::ostringstream strStream;
+
+	strStream.fill('0');
+	strStream << "Score: "  << setw(7) << score  << "  "
+			  << "Level: "  << setw(2) << level  << "  ";
+	strStream.fill(' ');
+	strStream << "Lives: "  << setw(2) << lives  << "  "
+			  << "Health: " << setw(3) << health << "%  "
+			  << "Ammo: "   << setw(3) << ammo   << "  ";
+
+	strStream.fill('0');
+	strStream << "Bonus: "  << setw(4) << bonus;
+
+	return strStream.str();
+}
+
+void StudentWorld::setLevelFinished(bool isFinished){
+	m_levelFinished = isFinished;
+}
+
+bool StudentWorld::isLevelFinished(){
+	return m_levelFinished;
+}
+
 
 // Students:  Add code to this file (if you wish), StudentWorld.h, Actor.h and Actor.cpp
